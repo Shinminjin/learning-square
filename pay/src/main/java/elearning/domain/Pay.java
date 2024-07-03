@@ -46,6 +46,15 @@ public class Pay {
     //<<< Clean Arch / Port Method
     public static void pay(LectureRegistered lectureRegistered) {
         //implement business logic here:
+        Pay pay = new Pay();
+        pay.setEnrollmentId(lectureRegistered.getId());
+        pay.setLectureName(lectureRegistered.getLectureName());
+        pay.setPrice(lectureRegistered.getLecturePrice());
+        pay.setStatus(lectureRegistered.getStatus());
+        repository().save(pay);
+
+        PaymentApproved paymentApproved = new PaymentApproved(pay);
+        paymentApproved.publishAfterCommit();
 
         /** Example 1:  new item 
         Pay pay = new Pay();
@@ -74,6 +83,14 @@ public class Pay {
     //<<< Clean Arch / Port Method
     public static void cancelPayment(LectureCancelled lectureCancelled) {
         //implement business logic here:
+        repository().findById(lectureCancelled.getId()).ifPresent(pay -> {
+            pay.setPrice(lectureCancelled.getLecturePrice());
+            pay.setStatus(lectureCancelled.getStatus());
+            repository().save(pay);
+
+            PaymentCancelled paymentCancelled = new PaymentCancelled(pay);
+            paymentCancelled.publishAfterCommit();
+        });
 
         /** Example 1:  new item 
         Pay pay = new Pay();

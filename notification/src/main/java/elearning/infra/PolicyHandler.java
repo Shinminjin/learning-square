@@ -29,7 +29,7 @@ public class PolicyHandler {
     ) {
         LectureUpdated event = lectureUpdated;
         System.out.println(
-            "\n\n##### listener Notificate : " + lectureUpdated + "\n\n"
+            "\n\n##### [카카오알림톡] 강의 업데이트 : " + lectureUpdated + "\n\n"
         );
         // Sample Logic //
 

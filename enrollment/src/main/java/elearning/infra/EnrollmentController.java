@@ -37,6 +37,8 @@ public class EnrollmentController {
 
         optionalEnrollment.orElseThrow(() -> new Exception("No Entity Found"));
         Enrollment enrollment = optionalEnrollment.get();
+        enrollment.setId(id);
+        enrollment.setStatus("CANCELLED");
         enrollment.cancelLecture();
 
         enrollmentRepository.save(enrollment);

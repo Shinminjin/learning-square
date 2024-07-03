@@ -38,6 +38,9 @@ public class ManagementController {
 
         optionalManagement.orElseThrow(() -> new Exception("No Entity Found"));
         Management management = optionalManagement.get();
+        management.setId(id);
+        management.setLectureMaterial(updateLectureCommand.getLectureMaterial());
+        management.setLectureName(updateLectureCommand.getLectureName());
         management.updateLecture(updateLectureCommand);
 
         managementRepository.save(management);

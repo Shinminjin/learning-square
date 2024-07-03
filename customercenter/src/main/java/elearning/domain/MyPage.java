@@ -13,10 +13,10 @@ import lombok.Data;
 public class MyPage {
 
     @Id
-    //@GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    private Integer enrollmentId;
+    private Long enrollmentId;
     private String lectureName;
     private String courseStartDate;
     private String courseEndDate;
